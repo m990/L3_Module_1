@@ -2,6 +2,7 @@ package SearchingAndSortingAlgorithms;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Algorithms {
@@ -50,23 +51,40 @@ public class Algorithms {
 		return sos;
 	}
 	public static ArrayList<Double> sortScores(List<Double> doubleList) {
-		double temp = 100000;
-		ArrayList<Double> sortedList = new ArrayList<>();
-		
-		sortedList.add(doubleList.get(0));
-		
-		for (double i: doubleList) {
-			for (double j: doubleList) {
-				if (i>j) {
-					if (temp > j) {
-						temp = j;
-					}
-					//sortedList.add(doubleList.get(j));
+		List<Double> sortedList = new ArrayList<Double>();
+		sortedList.add(0, doubleList.get(0));
+		for (int i = 1; i < doubleList.size(); i++){
+			boolean foundSpot = false;
+			for (int j = 0; j < sortedList.size(); j++) {
+				if (doubleList.get(i)<sortedList.get(j)) {
+					sortedList.add(j, doubleList.get(i));
+					foundSpot = true;
+					break;
 				}
 			}
-			sortedList.add(temp);
+			if (!foundSpot) {
+				sortedList.add(doubleList.get(i));
+			}
+		}
+		return (ArrayList<Double>) sortedList;
+	}
+	public static ArrayList<String> sortDNA(List<String> DNA_list){
+		ArrayList<String> sortedList = new ArrayList<>();
+		sortedList.add(0, DNA_list.get(0));
+		for (int i = 1; i < DNA_list.size(); i++) {
+			boolean foundSpot = false;
+			for (int j = 0; j < sortedList.size(); j++) {
+				if (DNA_list.get(i).length() < sortedList.get(j).length()) {
+					sortedList.add(j, DNA_list.get(i));
+					foundSpot = true;
+					break;
+				}
+			}
+			if (!foundSpot) {
+				sortedList.add(DNA_list.get(i));
+				
+			}
 		}
 		return sortedList;
 	}
-	
 }
