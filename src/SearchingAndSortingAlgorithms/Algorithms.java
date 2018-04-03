@@ -87,4 +87,23 @@ public class Algorithms {
 		}
 		return sortedList;
 	}
+	public static ArrayList<String> sortWords(List<String> wordList){
+		ArrayList<String> sortedList = new ArrayList<>();
+		sortedList.add(0, wordList.get(0));
+		for (int i = 1; i < wordList.size(); i++) {
+			boolean foundSpot = false;
+			for (int j = 0; i < sortedList.size(); j++) {
+				if (wordList.get(i).compareTo(sortedList.get(j)) > 0) {
+					sortedList.add(j, sortedList.get(i));
+					foundSpot = true;
+					break;
+				}
+			}
+			if (!foundSpot) {
+				sortedList.add(wordList.get(i));
+			}
+		}
+		System.out.println(sortedList);
+		return sortedList;
+	}
 }
